@@ -1,1 +1,57 @@
-all user
+  <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
+    <meta charset="utf-8">
+
+    <!-- Make it responsive to small screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+
+    <link rel="stylesheet" media="all" href="/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" />
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="/users">Users</a>
+        </li>
+        <li>
+          <a href="/photos">Photos</a>
+        </li>
+      </ul>
+    </nav>
+    <h1>List of users</h1>
+
+<form action="/insert_user_record">
+  <label for="browser_username">Username</label>
+  <input id="browser_username" type="text" name="input_username" placeholder="Enter a username...">
+
+  <button>Add user</button>
+</form>
+<hr>
+<table border="1">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Username
+    </th>
+
+    <th></th>
+  </tr>
+<%User.all.each do |user|%>
+  <tr>
+    <td>
+      <%=user.id%>
+    </td>
+
+    <td>
+      <%=user.username%>
+    </td>
+
+    <td>
+      <a href="/users/<%=user.id%>">Show details</a>
+    </td>
+  </tr>
+<%end%>
