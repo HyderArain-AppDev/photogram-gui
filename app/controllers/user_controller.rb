@@ -7,4 +7,12 @@ class UserController < ApplicationController
     @user = User.where({:username => @username}).first
     render({:template => "user_detail.html.erb"})
   end
+  def add
+    username = params.fetch("input_username")
+    new_user = User.new
+    new_user.username = username
+    new_user.save
+    redirect_to("/users/" + username)
+  end
+
 end
