@@ -1,1 +1,85 @@
-user detail
+    <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
+    <meta charset="utf-8">
+
+    <!-- Make it responsive to small screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+
+    <link rel="stylesheet" media="all" href="/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" />
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="/users">Users</a>
+        </li>
+        <li>
+          <a href="/photos">Photos</a>
+        </li>
+      </ul>
+    </nav>
+    <h1><%=@user.username%></h1>
+
+<dl>
+  <dt>ID</dt>
+  <dd><%=@user.id%></dd>
+
+  <dt>Edit user</dt>
+  <dd>
+    <form action="/update_user/<%=@user.id%>" >
+      <label for="browser_username">Username</label>
+      <input id="browser_username" type="text" name="input_username" placeholder="Enter a username..." value="<%=@user.username%>">
+
+      <button>Update user</button>
+    </form>
+  </dd>
+</dl>
+
+<h2>Own photos (<%=@user.own_photos.count%>)</h2>
+
+<table border="1">
+  <tr>
+    <th>
+      Image
+    </th>
+
+    <th>
+      Owner
+    </th>
+
+    <th>
+      Caption
+    </th>
+
+    <th>
+      Posted
+    </th>
+
+    <th></th>
+  </tr>
+  <%@user.own_photos.each do |my_photo|%>
+    <tr>
+      <td>
+        <img src="<%=my_photo.image%>">
+      </td>
+      <td>
+        <%=my_photo.poster.username%>
+      </td>
+      <td>
+        <%=my_photo.caption%>
+      </td>
+      <td>
+        <%=my_photo.created_at%>
+      </td>
+      <td>
+        <a href="/photos/<%=my_photo.id%>">Show details</a>
+      </td>
+    </tr>
+  <%end%>
+
+
+</table>
+
+  </body>
+</html>
